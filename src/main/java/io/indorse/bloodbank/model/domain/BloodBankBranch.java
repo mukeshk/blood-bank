@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
 @Data
@@ -21,17 +22,20 @@ public class BloodBankBranch {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name="branchName", nullable = false, length = 255)
+    private @NotNull String branchName;
+
     @Column(name="uuid",nullable = false,length = 100)
-    private String uuid;
+    private @NotNull String uuid;
 
     @Column(name = "manager",nullable = false,length = 150)
-    private String manager;
+    private @NotNull String manager;
 
     @Column(name="contactNumber",nullable = false,length = 25)
-    private String contactNumber;
+    private @NotNull String contactNumber;
 
     @Column(name = "contactEmail",nullable = false,length = 100)
-    private String contactEmail;
+    private @NotNull  String contactEmail;
 
     @Embedded
     private Address address;
