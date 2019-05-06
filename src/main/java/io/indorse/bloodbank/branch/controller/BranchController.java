@@ -1,18 +1,13 @@
 package io.indorse.bloodbank.branch.controller;
 
-import io.indorse.bloodbank.account.mapper.AccountMapper;
 import io.indorse.bloodbank.branch.mapper.BranchMapper;
 import io.indorse.bloodbank.branch.service.BranchService;
-import io.indorse.bloodbank.model.domain.BloodBankAccount;
 import io.indorse.bloodbank.model.domain.BloodBankBranch;
-import io.indorse.bloodbank.model.dto.BloodBankAccountDTO;
 import io.indorse.bloodbank.model.dto.BloodBankBranchDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -25,7 +20,7 @@ public class BranchController {
     private BranchService branchService;
 
     @PostMapping("/create")
-    public void create(BloodBankBranchDTO branchDTO){
+    public void create(@Valid @RequestBody BloodBankBranchDTO branchDTO){
         BloodBankBranch branch = BranchMapper.mapNewInstance(branchDTO);
         branch.setUuid(UUID.randomUUID().toString());
         branchService.create(branch);

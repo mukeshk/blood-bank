@@ -31,6 +31,10 @@ public class AccountTransaction {
     private BloodBankBranch branch;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "bloodGroup", nullable = false)
+    private BloodGroup bloodGroup;
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "transactionType",length = 15)
     private TransactionType type;
 
