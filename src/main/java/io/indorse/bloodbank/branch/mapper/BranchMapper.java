@@ -3,6 +3,7 @@ package io.indorse.bloodbank.branch.mapper;
 import io.indorse.bloodbank.common.mapper.AddressMapper;
 import io.indorse.bloodbank.model.domain.BloodBankBranch;
 import io.indorse.bloodbank.model.dto.BloodBankBranchDTO;
+import io.indorse.bloodbank.model.dto.BloodBankBranchListDTO;
 
 public class BranchMapper {
 
@@ -18,6 +19,16 @@ public class BranchMapper {
 
     public static BloodBankBranchDTO map(BloodBankBranch branch){
         BloodBankBranchDTO branchDTO = new BloodBankBranchDTO();
+        branchDTO.setContactEmail(branch.getContactEmail());
+        branchDTO.setContactNumber(branch.getContactNumber());
+        branchDTO.setManager(branch.getManager());
+        branchDTO.setBranchName(branch.getBranchName());
+        branchDTO.setAddress(AddressMapper.map(branch.getAddress()));
+        return branchDTO;
+    }
+
+    public static BloodBankBranchListDTO mapToListModel(BloodBankBranch branch){
+        BloodBankBranchListDTO branchDTO = new BloodBankBranchListDTO();
         branchDTO.setContactEmail(branch.getContactEmail());
         branchDTO.setContactNumber(branch.getContactNumber());
         branchDTO.setManager(branch.getManager());

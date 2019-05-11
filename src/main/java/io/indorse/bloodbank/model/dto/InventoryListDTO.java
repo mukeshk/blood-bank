@@ -1,7 +1,7 @@
 package io.indorse.bloodbank.model.dto;
 
 import io.indorse.bloodbank.model.domain.BloodGroup;
-import io.indorse.bloodbank.model.domain.TransactionType;
+import io.indorse.bloodbank.model.domain.InventoryType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,12 +13,15 @@ import java.util.Date;
 @Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class AccountTransactionListDTO {
-
+public class InventoryListDTO {
     private String uuid;
-    private Date transactionDate;
-    private TransactionType transactionType;
+    private Date expiryDate;
+    private float quantity;
     private BloodGroup bloodGroup;
-    private int quantity;
-    private Boolean safe;
+    private InventoryType inventoryType;
+    private String branchName;
+    private String branchContactName;
+    private String branchContactEmail;
+    private String branchContactNumber;
+    private String branchAddress;
 }

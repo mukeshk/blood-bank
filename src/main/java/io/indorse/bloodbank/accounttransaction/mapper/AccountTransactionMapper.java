@@ -10,6 +10,8 @@ public class AccountTransactionMapper {
         transaction.setBloodGroup(accountTransactionDTO.getBloodGroup());
         transaction.setTransactionDate(accountTransactionDTO.getTransactionDate());
         transaction.setType(accountTransactionDTO.getTransactionType());
+        transaction.setQuantity(accountTransactionDTO.getQuantity());
+        transaction.setSafe(null);
         return transaction;
     }
 
@@ -19,6 +21,8 @@ public class AccountTransactionMapper {
         transactionDTO.setTransactionDate(accountTransaction.getTransactionDate());
         transactionDTO.setTransactionType(accountTransaction.getType());
         transactionDTO.setUuid(accountTransaction.getUuid());
+        transactionDTO.setQuantity(accountTransaction.getQuantity());
+        transactionDTO.setSafe(accountTransaction.getSafe());
         return transactionDTO;
     }
 }

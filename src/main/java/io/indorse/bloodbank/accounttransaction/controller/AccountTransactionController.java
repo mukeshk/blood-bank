@@ -1,6 +1,5 @@
 package io.indorse.bloodbank.accounttransaction.controller;
 
-import io.indorse.bloodbank.account.mapper.AccountMapper;
 import io.indorse.bloodbank.account.service.AccountService;
 import io.indorse.bloodbank.accounttransaction.mapper.AccountTransactionMapper;
 import io.indorse.bloodbank.accounttransaction.service.AccountTransactionService;
@@ -9,18 +8,15 @@ import io.indorse.bloodbank.model.domain.AccountTransaction;
 import io.indorse.bloodbank.model.domain.BloodBankAccount;
 import io.indorse.bloodbank.model.domain.BloodBankBranch;
 import io.indorse.bloodbank.model.dto.AccountTransactionDTO;
-import io.indorse.bloodbank.model.dto.BloodBankAccountDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/account/transactions")
+@ControllerAdvice
 public class AccountTransactionController {
 
     @Autowired
@@ -30,12 +26,23 @@ public class AccountTransactionController {
     @Autowired
     private BranchService branchService;
 
+
+    /**
+     * Create Transaction
+     * @param accountTransactionDTO Holds the transaction detail.
+     */
     @PostMapping("/create")
     public void create(@Valid @RequestBody AccountTransactionDTO accountTransactionDTO){
         BloodBankAccount account = accountService.findByUUID(accountTransactionDTO.getAccountUUID());
-        //if null -- invalid bad request
+        if(account==null){
+            throw new RuntimeException("account does not exist.");
+        }
         BloodBankBranch branch = branchService.findByUUID(accountTransactionDTO.getBranchUUID());
-        //if null -- invalid bad request
+        if(branch==null){
+            throw new RuntimeException("branch does not exist.");
+        }
+        //TODO fetch last transaction. --- check duration
+
         AccountTransaction accountTransaction = AccountTransactionMapper.mapNewInstance(accountTransactionDTO);
         accountTransaction.setUuid(UUID.randomUUID().toString());
         accountTransaction.setAccount(account);
@@ -43,5 +50,19 @@ public class AccountTransactionController {
         accountTransactionService.create(accountTransaction);
     }
 
+    /**
+     * Update whether donation is safe
+     * @param safe Holds the test result state
+     * @param uuid Holds the unique identifier for transaction.
+     */
+    @PostMapping("/test/{uuid}/{safe}")
+    public void updateTestResult(Boolean safe,String uuid){
+        AccountTransaction transaction = accountTransactionService.findByUUID(uuid);
+        transaction.setSafe(safe);
+    }
 
+    @PostMapping("/recordReceipt")
+    public void recordReceived(){
+
+    }
 }

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Data
@@ -42,4 +43,15 @@ public class AccountTransaction {
     @Column(name="transactionDate")
     private Date transactionDate;
 
+    @Column(name = "quantity")
+    @NotNull
+    private int quantity;
+
+    @Column(name="safe")
+    @NotNull
+    private Boolean safe;
+
+    @Column(name="processed", nullable = false)
+    @NotNull
+    private Boolean processed = false;
 }

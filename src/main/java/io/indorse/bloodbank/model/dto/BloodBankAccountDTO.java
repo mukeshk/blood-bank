@@ -1,5 +1,7 @@
 package io.indorse.bloodbank.model.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.indorse.bloodbank.common.serializers.CustomDateDeSerializer;
 import io.indorse.bloodbank.model.domain.BloodGroup;
 import io.indorse.bloodbank.model.domain.Gender;
 import lombok.AllArgsConstructor;
@@ -20,8 +22,6 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BloodBankAccountDTO {
-
-    private String uuid;
 
     @NotEmpty(message = "first name must not be empty")
     @Length(min = 3,max = 150,message = "first name should be between 3 to 150 in length")
@@ -46,6 +46,7 @@ public class BloodBankAccountDTO {
     private BloodGroup bloodGroup;
 
     @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @JsonDeserialize(using= CustomDateDeSerializer.class)
     @NotNull(message = "birth date must not be empty")
     @Past(message = "birth date should be in the past")
     private Date birthDate;

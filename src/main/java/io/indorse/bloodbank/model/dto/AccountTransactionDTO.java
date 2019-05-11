@@ -8,10 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.Future;
-import javax.validation.constraints.FutureOrPresent;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.util.Date;
 
 @Data
@@ -39,4 +36,8 @@ public class AccountTransactionDTO {
     @NotNull(message = "blood group should be present")
     private BloodGroup bloodGroup;
 
+    @NotNull(message = "quantity should be present")
+    @Min(value = 350, message = "quantity should be greater then 350ml")
+    @Max(value = 450, message = "quantity should be less then 450ml")
+    private int quantity;
 }
