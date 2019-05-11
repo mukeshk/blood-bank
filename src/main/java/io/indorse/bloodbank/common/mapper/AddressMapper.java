@@ -24,4 +24,16 @@ public class AddressMapper {
         addressDTO.setZipCode(address.getZipCode());
         return addressDTO;
     }
+
+    public static String mapToString(Address address){
+        StringBuffer addressInfo = new StringBuffer();
+        addressInfo.append(address.getAddressLine1());
+        if(address.getAddressLine2()!=null){
+            addressInfo.append(", " + address.getAddressLine2());
+        }
+        addressInfo.append(", "+ address.getCity());
+        addressInfo.append(", "+ address.getState());
+        addressInfo.append(", "+ address.getZipCode());
+        return addressInfo.toString();
+    }
 }

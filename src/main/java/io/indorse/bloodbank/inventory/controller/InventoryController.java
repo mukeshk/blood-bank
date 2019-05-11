@@ -1,8 +1,10 @@
 package io.indorse.bloodbank.inventory.controller;
 
 import io.indorse.bloodbank.accounttransaction.service.AccountTransactionService;
+import io.indorse.bloodbank.inventory.mapper.InventoryMapper;
 import io.indorse.bloodbank.inventory.service.InventoryService;
 import io.indorse.bloodbank.model.domain.AccountTransaction;
+import io.indorse.bloodbank.model.domain.Inventory;
 import io.indorse.bloodbank.model.domain.InventoryType;
 import io.indorse.bloodbank.model.dto.InventoryListDTO;
 import io.indorse.bloodbank.model.dto.InventorySearchDTO;
@@ -28,6 +30,10 @@ public class InventoryController {
     @PostMapping("/search")
     public ResponseEntity<List<InventoryListDTO>> findInventory(@RequestBody InventorySearchDTO searchDTO){
         List<InventoryListDTO> inventoryList = new ArrayList<>();
+        List<Inventory> inventories= inventoryService.searchInventory(searchDTO);
+        for (Inventory i:inventories) {
+            inventoryList.add(InventoryMapper.mapToListDTO(i));
+        }
         return ResponseEntity.ok(inventoryList);
     }
 

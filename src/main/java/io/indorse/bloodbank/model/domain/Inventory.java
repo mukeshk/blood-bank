@@ -27,7 +27,7 @@ public class Inventory {
     @Column(name = "inventoryType", nullable = false)
     private InventoryType inventoryType;
 
-    @Column(name = "bloodGroup", nullable = false)
+    @Column(name = "active", nullable = false)
     private boolean active;
 
     @Column(name="expiryDate",nullable = false)

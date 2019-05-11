@@ -4,12 +4,15 @@ import io.indorse.bloodbank.inventory.repository.InventoryRepository;
 import io.indorse.bloodbank.model.domain.AccountTransaction;
 import io.indorse.bloodbank.model.domain.Inventory;
 import io.indorse.bloodbank.model.domain.InventoryType;
+import io.indorse.bloodbank.model.dto.InventoryListDTO;
+import io.indorse.bloodbank.model.dto.InventorySearchDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Service("inventoryService")
@@ -42,4 +45,8 @@ public class InventoryServiceImpl implements InventoryService {
         }
     }
 
+    @Override
+    public List<Inventory> searchInventory(InventorySearchDTO searchCriteria){
+        return inventoryRepository.searchByCriteria(searchCriteria);
+    }
 }
