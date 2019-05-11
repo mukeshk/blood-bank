@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@RestController
 public class InventoryController {
 
     @Autowired
@@ -45,7 +47,7 @@ public class InventoryController {
         if(transaction==null){
             throw new RuntimeException("Blood Donation Transaction not found");
         }
-        if(Boolean.FALSE.equals(transaction.getSafe() || transaction.getSafe()==null){
+        if(Boolean.FALSE.equals(transaction.getSafe() || transaction.getSafe()==null)){
             throw new RuntimeException("Blood Donation Transaction not tested or cannot be used.");
         }
         if(Boolean.TRUE.equals(transaction.getProcessed())){
