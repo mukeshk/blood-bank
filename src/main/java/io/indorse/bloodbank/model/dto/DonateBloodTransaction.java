@@ -15,8 +15,7 @@ import java.util.Date;
 @Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class AccountTransactionDTO {
-    private String uuid;
+public class DonateBloodTransaction {
 
     @NotEmpty(message="branch id should be present")
     @Length
@@ -29,9 +28,6 @@ public class AccountTransactionDTO {
     @FutureOrPresent
     @NotNull(message = "transaction date should be present")
     private Date transactionDate;
-
-    @NotNull(message = "transaction type should be present")
-    private TransactionType transactionType;
 
     @NotNull(message = "blood group should be present")
     private BloodGroup bloodGroup;

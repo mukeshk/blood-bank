@@ -1,7 +1,6 @@
 package io.indorse.bloodbank.accounttransaction.service;
 
 import io.indorse.bloodbank.model.domain.AccountTransaction;
-import io.indorse.bloodbank.model.dto.AccountTransactionDTO;
 
 public interface AccountTransactionService {
     public Long create(AccountTransaction accountTransaction);

@@ -1,7 +1,9 @@
 package io.indorse.bloodbank.inventory.controller;
 
 import io.indorse.bloodbank.accounttransaction.service.AccountTransactionService;
+import io.indorse.bloodbank.inventory.service.InventoryService;
 import io.indorse.bloodbank.model.domain.AccountTransaction;
+import io.indorse.bloodbank.model.domain.InventoryType;
 import io.indorse.bloodbank.model.dto.InventoryListDTO;
 import io.indorse.bloodbank.model.dto.InventorySearchDTO;
 import io.indorse.bloodbank.model.dto.StorageType;
@@ -20,22 +22,30 @@ public class InventoryController {
     @Autowired
     private AccountTransactionService accountTransactionService;
 
+    @Autowired
+    private InventoryService inventoryService;
+
     @PostMapping("/search")
     public ResponseEntity<List<InventoryListDTO>> findInventory(@RequestBody InventorySearchDTO searchDTO){
         List<InventoryListDTO> inventoryList = new ArrayList<>();
         return ResponseEntity.ok(inventoryList);
     }
 
+    /**
+     * Store the donate blood as a whole or processed component
+     * @param transactionUUID Holds the blood donation transaction which needs to be transform
+     *                        to inventory
+     * @param storageType Identifies the storage decision.
+     */
     @PostMapping("/store/uuid/{storageType}")
     public void storeInventory(String transactionUUID, StorageType storageType){
         AccountTransaction transaction = accountTransactionService.findByUUID(transactionUUID);
-
         transactionProcessable(transaction);
 
         if(StorageType.WHOLE_BLOOD.equals(storageType)){
-
+            inventoryService.saveInventory(transaction, InventoryType.WHOLE);
         }else{
-
+            inventoryService.saveProcessedComponent(transaction);
         }
     }
 

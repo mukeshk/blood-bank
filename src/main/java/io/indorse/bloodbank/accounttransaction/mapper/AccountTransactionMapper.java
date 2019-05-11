@@ -1,15 +1,16 @@
 package io.indorse.bloodbank.accounttransaction.mapper;
 
 import io.indorse.bloodbank.model.domain.AccountTransaction;
-import io.indorse.bloodbank.model.dto.AccountTransactionDTO;
+import io.indorse.bloodbank.model.domain.TransactionType;
+import io.indorse.bloodbank.model.dto.DonateBloodTransaction;
 import io.indorse.bloodbank.model.dto.AccountTransactionListDTO;
 
 public class AccountTransactionMapper {
-    public static AccountTransaction mapNewInstance(AccountTransactionDTO accountTransactionDTO){
+    public static AccountTransaction mapNewDonationInstance(DonateBloodTransaction accountTransactionDTO){
         AccountTransaction transaction = new AccountTransaction();
         transaction.setBloodGroup(accountTransactionDTO.getBloodGroup());
         transaction.setTransactionDate(accountTransactionDTO.getTransactionDate());
-        transaction.setType(accountTransactionDTO.getTransactionType());
+        transaction.setType(TransactionType.DEPOSIT);
         transaction.setQuantity(accountTransactionDTO.getQuantity());
         transaction.setSafe(null);
         return transaction;

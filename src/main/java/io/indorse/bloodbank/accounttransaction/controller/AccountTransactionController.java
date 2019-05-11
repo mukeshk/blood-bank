@@ -7,7 +7,7 @@ import io.indorse.bloodbank.branch.service.BranchService;
 import io.indorse.bloodbank.model.domain.AccountTransaction;
 import io.indorse.bloodbank.model.domain.BloodBankAccount;
 import io.indorse.bloodbank.model.domain.BloodBankBranch;
-import io.indorse.bloodbank.model.dto.AccountTransactionDTO;
+import io.indorse.bloodbank.model.dto.DonateBloodTransaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,8 +31,8 @@ public class AccountTransactionController {
      * Create Transaction
      * @param accountTransactionDTO Holds the transaction detail.
      */
-    @PostMapping("/create")
-    public void create(@Valid @RequestBody AccountTransactionDTO accountTransactionDTO){
+    @PostMapping("/recordDonation")
+    public void recordDonation(@Valid @RequestBody DonateBloodTransaction accountTransactionDTO){
         BloodBankAccount account = accountService.findByUUID(accountTransactionDTO.getAccountUUID());
         if(account==null){
             throw new RuntimeException("account does not exist.");
@@ -43,7 +43,7 @@ public class AccountTransactionController {
         }
         //TODO fetch last transaction. --- check duration
 
-        AccountTransaction accountTransaction = AccountTransactionMapper.mapNewInstance(accountTransactionDTO);
+        AccountTransaction accountTransaction = AccountTransactionMapper.mapNewDonationInstance(accountTransactionDTO);
         accountTransaction.setUuid(UUID.randomUUID().toString());
         accountTransaction.setAccount(account);
         accountTransaction.setBranch(branch);
