@@ -45,7 +45,7 @@ public class AccountTransaction {
 
     @Column(name = "quantity")
     @NotNull
-    private int quantity;
+    private float quantity;
 
     @Column(name="safe")
     @NotNull

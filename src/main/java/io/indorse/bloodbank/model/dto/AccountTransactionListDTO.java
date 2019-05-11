@@ -19,6 +19,6 @@ public class AccountTransactionListDTO {
     private Date transactionDate;
     private TransactionType transactionType;
     private BloodGroup bloodGroup;
-    private int quantity;
+    private float quantity;
     private Boolean safe;
 }

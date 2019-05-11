@@ -4,10 +4,10 @@ import io.indorse.bloodbank.account.service.AccountService;
 import io.indorse.bloodbank.accounttransaction.mapper.AccountTransactionMapper;
 import io.indorse.bloodbank.accounttransaction.service.AccountTransactionService;
 import io.indorse.bloodbank.branch.service.BranchService;
-import io.indorse.bloodbank.model.domain.AccountTransaction;
-import io.indorse.bloodbank.model.domain.BloodBankAccount;
-import io.indorse.bloodbank.model.domain.BloodBankBranch;
+import io.indorse.bloodbank.inventory.service.InventoryService;
+import io.indorse.bloodbank.model.domain.*;
 import io.indorse.bloodbank.model.dto.DonateBloodTransaction;
+import io.indorse.bloodbank.model.dto.ReceiptBloodTransaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +26,9 @@ public class AccountTransactionController {
     @Autowired
     private BranchService branchService;
 
+    @Autowired
+    private InventoryService inventoryService;
+
 
     /**
      * Create Transaction
@@ -41,7 +44,6 @@ public class AccountTransactionController {
         if(branch==null){
             throw new RuntimeException("branch does not exist.");
         }
-        //TODO fetch last transaction. --- check duration
 
         AccountTransaction accountTransaction = AccountTransactionMapper.mapNewDonationInstance(accountTransactionDTO);
         accountTransaction.setUuid(UUID.randomUUID().toString());
@@ -62,7 +64,17 @@ public class AccountTransactionController {
     }
 
     @PostMapping("/recordReceipt")
-    public void recordReceived(){
+    public void recordReceived(@Valid @RequestBody ReceiptBloodTransaction receiptBloodTransaction){
+        Inventory inventory =  inventoryService.findByUUID(receiptBloodTransaction.getInventoryUUID());
+        inventory.setActive(Boolean.FALSE);
+        inventoryService.update(inventory);
 
+        AccountTransaction t = new AccountTransaction();
+        t.setBranch(inventory.getBranch());
+        t.setBloodGroup(inventory.getBloodGroup());
+        t.setTransactionDate(receiptBloodTransaction.getTransactionDate());
+        t.setQuantity(inventory.getQuantity());
+        t.setType(TransactionType.WITHDRAW);
+        accountTransactionService.create(t);
     }
 }

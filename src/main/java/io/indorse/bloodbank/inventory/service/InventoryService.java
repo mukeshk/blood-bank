@@ -11,5 +11,6 @@ public interface InventoryService {
     public void saveInventory(AccountTransaction transaction, InventoryType inventoryType);
     public void saveProcessedComponent(AccountTransaction transaction);
     public List<Inventory> searchInventory(InventorySearchDTO searchCriteria);
-
+    public Inventory findByUUID(String uuid);
+    public void update(Inventory inventory);
 }

@@ -49,4 +49,14 @@ public class InventoryServiceImpl implements InventoryService {
     public List<Inventory> searchInventory(InventorySearchDTO searchCriteria){
         return inventoryRepository.searchByCriteria(searchCriteria);
     }
+
+    @Override
+    public void update(Inventory inventory) {
+        inventoryRepository.save(inventory);
+    }
+
+    @Override
+    public Inventory findByUUID(String uuid) {
+        return inventoryRepository.findByUuid(uuid);
+    }
 }
