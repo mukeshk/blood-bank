@@ -5,6 +5,11 @@ import io.indorse.bloodbank.model.domain.Inventory;
 import io.indorse.bloodbank.model.dto.InventoryListDTO;
 
 public class InventoryMapper {
+    /**
+     * Map inventory entity to list model
+     * @param inventory Holds the inventory instance
+     * @return Inventory list.
+     */
     public static InventoryListDTO mapToListDTO(Inventory inventory){
         InventoryListDTO listDTO = new InventoryListDTO();
         listDTO.setBloodGroup(inventory.getBloodGroup());

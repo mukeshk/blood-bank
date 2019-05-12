@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.websocket.server.PathParam;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +28,11 @@ public class InventoryController {
     @Autowired
     private InventoryService inventoryService;
 
+    /**
+     * Search Inventory - Find inventory by zipcode,bloodgroup,inventory type
+     * @param searchDTO Holds the search criteria.
+     * @return Search result matching the criteria.
+     */
     @PostMapping("/search")
     public ResponseEntity<List<InventoryListDTO>> findInventory(@RequestBody InventorySearchDTO searchDTO){
         List<InventoryListDTO> inventoryList = new ArrayList<>();
@@ -43,8 +49,8 @@ public class InventoryController {
      *                        to inventory
      * @param storageType Identifies the storage decision.
      */
-    @PostMapping("/store/uuid/{storageType}")
-    public void storeInventory(String transactionUUID, StorageType storageType){
+    @PostMapping("/store/{uuid}/{storageType}")
+    public void storeInventory(@PathParam("uuid") String transactionUUID, @PathParam("storageType") StorageType storageType){
         AccountTransaction transaction = accountTransactionService.findByUUID(transactionUUID);
         transactionProcessable(transaction);
 
