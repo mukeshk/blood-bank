@@ -83,7 +83,7 @@ Response Body:
 * End Point : /api/accounts/{uuid}
 * Description: Show account detail
 * Method: GET
-```
+----------------------------------------------------------------------------------------
 Request: http://localhost:8080/api/accounts/83a081a7-a757-4b01-a236-988942b7f296
 ```
 {
