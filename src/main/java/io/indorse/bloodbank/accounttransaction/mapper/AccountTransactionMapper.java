@@ -6,6 +6,11 @@ import io.indorse.bloodbank.model.dto.DonateBloodTransaction;
 import io.indorse.bloodbank.model.dto.AccountTransactionListDTO;
 
 public class AccountTransactionMapper {
+    /**
+     * Map Donate request to transaction entity
+     * @param accountTransactionDTO Holds the donation request model
+     * @return account entity instance
+     */
     public static AccountTransaction mapNewDonationInstance(DonateBloodTransaction accountTransactionDTO){
         AccountTransaction transaction = new AccountTransaction();
         transaction.setBloodGroup(accountTransactionDTO.getBloodGroup());
@@ -16,6 +21,11 @@ public class AccountTransactionMapper {
         return transaction;
     }
 
+    /**
+     * Map account transaction to List model
+     * @param accountTransaction Holds the transaction instance
+     * @return Holds the account transaction list model.
+     */
     public static AccountTransactionListDTO map(AccountTransaction accountTransaction){
         AccountTransactionListDTO transactionDTO = new AccountTransactionListDTO();
         transactionDTO.setBloodGroup(accountTransaction.getBloodGroup());
