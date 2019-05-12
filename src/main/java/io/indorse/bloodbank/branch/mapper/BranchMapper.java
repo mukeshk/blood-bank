@@ -7,6 +7,11 @@ import io.indorse.bloodbank.model.dto.BloodBankBranchListDTO;
 
 public class BranchMapper {
 
+    /**
+     * Map Branch model to entity
+     * @param branchDTO Holds the branch details.
+     * @return Branch entity instance
+     */
     public static BloodBankBranch mapNewInstance(BloodBankBranchDTO branchDTO){
         BloodBankBranch branch = new BloodBankBranch();
         branch.setContactEmail(branchDTO.getContactEmail());
@@ -17,6 +22,11 @@ public class BranchMapper {
         return branch;
     }
 
+    /**
+     * Map Branch entity to model
+     * @param branch Holds the branch entity instance
+     * @return Branch model
+     */
     public static BloodBankBranchDTO map(BloodBankBranch branch){
         BloodBankBranchDTO branchDTO = new BloodBankBranchDTO();
         branchDTO.setContactEmail(branch.getContactEmail());
@@ -27,6 +37,11 @@ public class BranchMapper {
         return branchDTO;
     }
 
+    /**
+     * Map the branch entity to the List model
+     * @param branch Holds the branch entity instance
+     * @return Holds the Branch List model.
+     */
     public static BloodBankBranchListDTO mapToListModel(BloodBankBranch branch){
         BloodBankBranchListDTO branchDTO = new BloodBankBranchListDTO();
         branchDTO.setContactEmail(branch.getContactEmail());

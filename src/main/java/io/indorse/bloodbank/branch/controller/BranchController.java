@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 import javax.xml.ws.Response;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +45,7 @@ public class BranchController {
      * @return Branch details.
      */
     @GetMapping("/{uuid}")
-    public ResponseEntity<BloodBankBranchDTO> findById(String uuid){
+    public ResponseEntity<BloodBankBranchDTO> findById(@PathParam("uuid") String uuid){
         BloodBankBranch branch = branchService.findByUUID(uuid);
         if(branch==null){
             throw new RecordNotFoundException("branch record not found for uuid:="+ uuid);
