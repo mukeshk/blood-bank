@@ -241,7 +241,7 @@ http://localhost:8080/api/inventory/store/13f5f522-efb7-457b-9afc-8eae0303a78f/W
 * Description : Search Inventory
 * Method: POST
 --------------------------------------------------------------------------------------- 
-# REQUEST BODY
+* REQUEST BODY
 ```
 {
   "bloodGroup": "A_POSITIVE",
@@ -249,7 +249,7 @@ http://localhost:8080/api/inventory/store/13f5f522-efb7-457b-9afc-8eae0303a78f/W
   "zipCode": "12345"
 }
 ```
-# Response
+* Response
 ```
 [
   {
