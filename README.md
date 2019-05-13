@@ -217,15 +217,6 @@ Transaction Rest End Points
 ```
 http://localhost:8080/api/account/transactions/test/13f5f522-efb7-457b-9afc-8eae0303a78f/true
 ```
----------------------------------------------------------------------------------------
-## Update Test Result
-* End Point : /api/account/transactions/test/{uuid}/{safe}
-* Description: Record test result for donated blood.
-* Method: POST
-```
-http://localhost:8080/api/account/transactions/test/13f5f522-efb7-457b-9afc-8eae0303a78f/true
-```
----------------------------------------------------------------------------------------
 Inventory Rest End Points
 ---------------------------------------------------------------------------------------
 ## Store Inventory ( WHOLE_BLOOD or PROCESSED_COMPONENTS)
