@@ -228,10 +228,42 @@ http://localhost:8080/api/account/transactions/test/13f5f522-efb7-457b-9afc-8eae
 ---------------------------------------------------------------------------------------
 Inventory Rest End Points
 ---------------------------------------------------------------------------------------
+## Store Inventory ( WHOLE_BLOOD or PROCESSED_COMPONENTS)
 * End Point : /api/inventory/store/{uuid}/{storageType}
 * Description: Record test result for donated blood.
 * Method: POST
 ```
 http://localhost:8080/api/inventory/store/13f5f522-efb7-457b-9afc-8eae0303a78f/WHOLE_BLOOD
+```
+---------------------------------------------------------------------------------------
+## Search Inventory
+* End Point: /search
+* Description : Search Inventory
+* Method: POST
+--------------------------------------------------------------------------------------- 
+# REQUEST BODY
+```
+{
+  "bloodGroup": "A_POSITIVE",
+  "inventoryType": "WHOLE",
+  "zipCode": "12345"
+}
+```
+# Response
+```
+[
+  {
+    "uuid": null,
+    "expiryDate": "2019-06-17T08:38:58.422+0000",
+    "quantity": 0,
+    "bloodGroup": "A_POSITIVE",
+    "inventoryType": "WHOLE",
+    "branchName": "Likon Branch",
+    "branchContactName": "Sam Josepth",
+    "branchContactEmail": "sam.joseph@gmail.com",
+    "branchContactNumber": "sam.joseph@gmail.com",
+    "branchAddress": "192, Likon Road, Swis saffaire estate, LewPath, Kansas, 12345"
+  }
+]
 ```
 ---------------------------------------------------------------------------------------
