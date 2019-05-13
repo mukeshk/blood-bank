@@ -45,7 +45,7 @@ public class BranchController {
      * @return Branch details.
      */
     @GetMapping("/{uuid}")
-    public ResponseEntity<BloodBankBranchDTO> findById(@PathParam("uuid") String uuid){
+    public ResponseEntity<BloodBankBranchDTO> findById(@PathVariable("uuid") String uuid){
         BloodBankBranch branch = branchService.findByUUID(uuid);
         if(branch==null){
             throw new RecordNotFoundException("branch record not found for uuid:="+ uuid);

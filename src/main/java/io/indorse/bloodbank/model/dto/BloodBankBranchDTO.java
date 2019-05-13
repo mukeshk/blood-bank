@@ -16,19 +16,19 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class BloodBankBranchDTO {
 
-    @NotEmpty
+    @NotEmpty(message = "branch name is required")
     @Length(message = "branch name length between 5 and 250")
     private String branchName;
 
-    @NotEmpty
+    @NotEmpty(message = "manger name is required")
     @Length(message = "manager name length between 5 and 150")
     private String manager;
 
-    @NotEmpty
+    @NotEmpty(message = "contact number is required")
     @Length(message = "contact number length between 5 and 15")
     private String contactNumber;
 
-    @NotEmpty
+    @NotEmpty(message = "contact email is required")
     @Length(message = "contact email length between 5 and 150")
     private String contactEmail;
 

@@ -59,7 +59,7 @@ public class AccountTransactionController {
      * @param uuid Holds the unique identifier for transaction.
      */
     @PostMapping("/test/{uuid}/{safe}")
-    public void updateTestResult(@PathParam("safe") Boolean safe, @PathParam("uuid") String uuid){
+    public void updateTestResult(@PathVariable("safe") Boolean safe, @PathVariable("uuid") String uuid){
         AccountTransaction transaction = accountTransactionService.findByUUID(uuid);
         transaction.setSafe(safe);
     }

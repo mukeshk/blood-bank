@@ -11,6 +11,7 @@ import io.indorse.bloodbank.model.dto.InventorySearchDTO;
 import io.indorse.bloodbank.model.dto.StorageType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -50,7 +51,7 @@ public class InventoryController {
      * @param storageType Identifies the storage decision.
      */
     @PostMapping("/store/{uuid}/{storageType}")
-    public void storeInventory(@PathParam("uuid") String transactionUUID, @PathParam("storageType") StorageType storageType){
+    public void storeInventory(@PathVariable("uuid") String transactionUUID, @PathParam("storageType") StorageType storageType){
         AccountTransaction transaction = accountTransactionService.findByUUID(transactionUUID);
         transactionProcessable(transaction);
 
