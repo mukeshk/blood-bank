@@ -26,4 +26,24 @@ public class AccountTransactionServiceImpl implements AccountTransactionService{
     public Iterable<AccountTransaction> findAll() {
         return null;
     }
+
+    /**
+     * Update transaction.
+     */
+    @Override
+    public void updateSafe(String uuid,Boolean safe){
+        AccountTransaction transaction = accountTransactionRepository.findByUuid(uuid);
+        transaction.setSafe(safe);
+        accountTransactionRepository.save(transaction);
+    }
+
+    /**
+     * Update transaction.
+     */
+    @Override
+    public void updateProcessed(String uuid,Boolean processed){
+        AccountTransaction transaction = accountTransactionRepository.findByUuid(uuid);
+        transaction.setProcessed(processed);
+        accountTransactionRepository.save(transaction);
+    }
 }

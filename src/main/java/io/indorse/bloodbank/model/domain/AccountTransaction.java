@@ -48,7 +48,6 @@ public class AccountTransaction {
     private float quantity;
 
     @Column(name="safe")
-    @NotNull
     private Boolean safe;
 
     @Column(name="processed", nullable = false)

@@ -22,4 +22,19 @@ public interface AccountTransactionService {
      * @return List of transactions
      */
     public Iterable<AccountTransaction> findAll();
+
+    /**
+     * Update Test result
+     * @param uuid transaction record to update.
+     * @param safe test result
+     */
+    public void updateSafe(String uuid,Boolean safe);
+
+    /**
+     * Update Processed status of inventory
+     * @param uuid Identifies the transaction
+     * @param processed updates the processed flag.
+     */
+    public void updateProcessed(String uuid,Boolean processed);
+
 }

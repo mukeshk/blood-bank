@@ -20,7 +20,7 @@ import javax.websocket.server.PathParam;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
+@RestController("/api/inventory")
 public class InventoryController {
 
     @Autowired
@@ -51,15 +51,17 @@ public class InventoryController {
      * @param storageType Identifies the storage decision.
      */
     @PostMapping("/store/{uuid}/{storageType}")
-    public void storeInventory(@PathVariable("uuid") String transactionUUID, @PathParam("storageType") StorageType storageType){
+    public void storeInventory(@PathVariable("uuid") String transactionUUID, @PathVariable("storageType") StorageType storageType){
         AccountTransaction transaction = accountTransactionService.findByUUID(transactionUUID);
         transactionProcessable(transaction);
+        accountTransactionService.updateProcessed(transactionUUID,Boolean.TRUE);
 
         if(StorageType.WHOLE_BLOOD.equals(storageType)){
             inventoryService.saveInventory(transaction, InventoryType.WHOLE);
         }else{
             inventoryService.saveProcessedComponent(transaction);
         }
+
     }
 
     /**

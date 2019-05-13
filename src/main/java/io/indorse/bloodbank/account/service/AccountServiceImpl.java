@@ -1,6 +1,7 @@
 package io.indorse.bloodbank.account.service;
 
 import io.indorse.bloodbank.account.repository.AccountRepository;
+import io.indorse.bloodbank.model.domain.AccountTransaction;
 import io.indorse.bloodbank.model.domain.BloodBankAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

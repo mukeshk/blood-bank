@@ -60,8 +60,7 @@ public class AccountTransactionController {
      */
     @PostMapping("/test/{uuid}/{safe}")
     public void updateTestResult(@PathVariable("safe") Boolean safe, @PathVariable("uuid") String uuid){
-        AccountTransaction transaction = accountTransactionService.findByUUID(uuid);
-        transaction.setSafe(safe);
+        accountTransactionService.updateSafe(uuid,safe);
     }
 
     /**

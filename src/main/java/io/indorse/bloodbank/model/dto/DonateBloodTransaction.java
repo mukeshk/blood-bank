@@ -25,7 +25,6 @@ public class DonateBloodTransaction {
     @Length
     private String accountUUID;
 
-    @FutureOrPresent
     @NotNull(message = "transaction date should be present")
     private Date transactionDate;
 
