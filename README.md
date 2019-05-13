@@ -194,3 +194,44 @@ Request: http://localhost:8080/api/branches/a1a7c444-7ad3-49b9-8326-202db37204e2
 }
 ```
 ----------------------------------------------------------------------------------------
+Transaction Rest End Points
+---------------------------------------------------------------------------------------
+## Record Donation
+* End Point : /api/account/transactions/recordDonation
+* Description: Record donation transaction.
+* Method: POST
+```
+{
+  "accountUUID": "83a081a7-a757-4b01-a236-988942b7f296",
+  "bloodGroup": "A_POSITIVE",
+  "branchUUID": "e89defa8-b91f-48dc-8731-f3c83fedfc43",
+  "quantity": 450,
+  "transactionDate": "2019-05-13T07:04:25.449Z"
+}
+```
+---------------------------------------------------------------------------------------
+## Update Test Result
+* End Point : /api/account/transactions/test/{uuid}/{safe}
+* Description: Record test result for donated blood.
+* Method: POST
+```
+http://localhost:8080/api/account/transactions/test/13f5f522-efb7-457b-9afc-8eae0303a78f/true
+```
+---------------------------------------------------------------------------------------
+## Update Test Result
+* End Point : /api/account/transactions/test/{uuid}/{safe}
+* Description: Record test result for donated blood.
+* Method: POST
+```
+http://localhost:8080/api/account/transactions/test/13f5f522-efb7-457b-9afc-8eae0303a78f/true
+```
+---------------------------------------------------------------------------------------
+Inventory Rest End Points
+---------------------------------------------------------------------------------------
+* End Point : /api/inventory/store/{uuid}/{storageType}
+* Description: Record test result for donated blood.
+* Method: POST
+```
+http://localhost:8080/api/inventory/store/13f5f522-efb7-457b-9afc-8eae0303a78f/WHOLE_BLOOD
+```
+---------------------------------------------------------------------------------------
